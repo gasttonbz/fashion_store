@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import GetIn from '../views/GetIn.vue'
+
+import GetInView from '../views/GetInView.vue'
 import AdminView from '../views/AdminView.vue'
 import UserView from '../views/UserView.vue'
 
@@ -10,7 +11,7 @@ const routes = [
   {
     path: '/getIn',
     name: 'getIn',
-    component: GetIn
+    component: GetInView
   },
   {
     path: '/admin',
