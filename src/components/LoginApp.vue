@@ -2,7 +2,6 @@
   <div>
     <h2>Inicie sesión</h2>
     <form @submit.prevent="signIn">
-
       <label for="email">Email</label>
       <input type="email" name="email" v-model="email" />
       <div v-if="errorEmail" class="alert-warning mi-alert">
@@ -15,7 +14,13 @@
         {{ msgErrorPassword }}
       </div>
 
-      <input type="checkbox" name="admin" id="admin" value="true" v-model="adminMode">
+      <input
+        type="checkbox"
+        name="admin"
+        id="admin"
+        value="true"
+        v-model="adminMode"
+      />
       <label for="admin">Administrador</label>
 
       <input type="submit" value="Ingresar" />
@@ -37,7 +42,7 @@ export default {
       msgErrorEmail: "",
       msgErrorPassword: "",
 
-      adminMode: false
+      adminMode: false,
     };
   },
   methods: {
@@ -53,11 +58,23 @@ export default {
           this.errorPassword = true;
           this.msgErrorPassword = "Ingrese su contraseña";
         } else {
-          if(this.adminMode) {
-              alert('Ingreso modo administrador') //verificar datos y establecer modo admin
-            } else {
-                alert('Ingreso modo usuario') //verificar datos y establecer modo user
-            }
+          if (this.adminMode) {
+            alert("Ingreso modo administrador"); //verificar datos y establecer modo admin
+          } else {
+
+            let data = {
+              username: this.email,
+              password: this.password
+            };
+            let datos = JSON.stringify(data);
+            console.log(datos); 
+            fetch("https://fakestoreapi.com/auth/login", {
+              method: "POST",
+              body: datos
+            })
+              .then((res) => res.json())
+              .then((json) => console.log(json));
+          }
         }
       }
     },
