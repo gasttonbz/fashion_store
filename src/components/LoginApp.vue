@@ -63,7 +63,7 @@ export default {
           } else {
 
             let data = {
-              username: this.email,
+              username: this.email, //corregir, pedir username en lugar de mail
               password: this.password
             };
             let datos = JSON.stringify(data);
