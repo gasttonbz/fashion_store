@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/carrito">Carrito</router-link>|
-      <router-link to="/AdminView">Pagina de administrador</router-link>|
-      <router-link to="/user">Productos</router-link>|
-      <router-link to="/getIn">get in</router-link>
-    </nav>
-    <router-view/>
+    <header class="d-flex justify-content-between align-items-center">
+      <router-link to="/">Fashion Store</router-link>
+      <nav>
+        <router-link to="/carrito">Carrito</router-link>
+        <router-link to="/admin">Pagina de administrador</router-link>
+        <router-link to="/user">Productos</router-link>
+        <router-link to="/getIn">get in</router-link>
+      </nav>
+    </header>
+
+    <router-view />
   </div>
 </template>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,16 +23,21 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+header {
+  width: 100%;
+  height: 10vh;
+  padding: 10px;
+  background-color: black;
+  color: white;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+header a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 4px;
 }
 </style>

@@ -5,6 +5,7 @@ import GetInView from '../views/GetInView.vue'
 import AdminView from '../views/AdminView.vue'
 import UserView from '../views/UserView.vue'
 import CarritoView from '../views/CarritoView.vue'
+import HomeView from '@/views/HomeView.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/carrito',
     name: 'carrito',
     component: CarritoView
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
   }
 ]
 

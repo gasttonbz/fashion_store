@@ -57,6 +57,14 @@ export default new Vuex.Store({
     disminuirProducto(state, {id}) {
       let productoParaDisminuir = state.carrito.find((product) => product.id == id);
       productoParaDisminuir.cantidad --;
+    },
+    toLogin(state) {
+      state.showLogin = true;
+      state.showRegister = false;
+    },
+    toRegister(state) {
+      state.showLogin = false;
+      state.showRegister = true;
     }
   },
   actions: {
@@ -74,6 +82,12 @@ export default new Vuex.Store({
     },
     disminuirProducto(context, id) {
       context.commit('disminuirProducto', {id})
+    },
+    toLogin(context) {
+      context.commit('toLogin');
+    },
+    toRegister(context) {
+      context.commit('toRegister');
     }
   },
   modules: {
