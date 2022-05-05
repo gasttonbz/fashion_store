@@ -1,5 +1,7 @@
+import router from "@/router";
 import Vue from "vue";
 import Vuex from "vuex";
+const axios = require("axios");
 
 Vue.use(Vuex);
 
@@ -10,6 +12,7 @@ export default new Vuex.Store({
 
     products: [],
     carrito: [],
+    detallesProducto: {},
   },
   getters: {
     showLogin(state) {
@@ -25,13 +28,15 @@ export default new Vuex.Store({
       return state.carrito;
     },
     total(state) {
-      //return state.carrito.reduce((acu, product) => acu + product.cantidad, 0);
       let total = 0;
-      for(let i = 0; i < state.carrito.length; i++) {
+      for (let i = 0; i < state.carrito.length; i++) {
         let totalProducto = state.carrito[i].cantidad * state.carrito[i].price;
-        total += totalProducto
+        total += totalProducto;
       }
-      return total
+      return total;
+    },
+    detallesProducto(state) {
+      return state.detallesProducto;
     },
   },
   mutations: {
@@ -46,7 +51,7 @@ export default new Vuex.Store({
       if (!state.carrito.some((product) => product.id == id)) {
         state.carrito.push(toAddProduct);
       } else {
-        this.dispatch('aumentarProducto', id)
+        this.dispatch("aumentarProducto", id);
       }
     },
     quitarDelCarrito(state, { id }) {
@@ -82,6 +87,14 @@ export default new Vuex.Store({
       state.showLogin = false;
       state.showRegister = true;
     },
+    verDetalles(state, { id }) {
+      state.detallesProducto = state.products.find(
+        (product) => product.id == id
+      );
+    },
+    vaciarCarrito(state) {
+      state.carrito = []
+    }
   },
   actions: {
     agregarAlCarrito(context, id) {
@@ -104,6 +117,34 @@ export default new Vuex.Store({
     },
     toRegister(context) {
       context.commit("toRegister");
+    },
+    vaciarCarrito(context) {
+      context.commit('vaciarCarrito')
+    },
+    realizarPedido() {
+      if (this.getters.carrito.length !== 0) {
+        let data = [];
+        for (let i = 0; i < this.getters.carrito.length; i++) {
+          let cartProduct = {};
+          cartProduct.title = this.getters.carrito[i].title;
+          cartProduct.cantidad = this.getters.carrito[i].cantidad;
+          cartProduct.id = this.getters.carrito[i].id;
+          data.push(cartProduct);
+        }
+        axios
+          .post("https://626f7d59c508beec48844b22.mockapi.io/pedidos", {
+            total: this.getters.total,
+            productos: data,
+          })
+          .then(alert("pedido exitoso, seras redirigido a la seccion productos"));
+          this.dispatch('vaciarCarrito')
+          router.push({path: '/user'})
+      } else {
+        alert("carrito vacio");
+      }
+    },
+    verDetalles(context, id) {
+      context.commit("verDetalles", { id });
     },
   },
   modules: {},

@@ -1,7 +1,9 @@
 <template>
   <div class="card">
+    <button @click="continuarViendo">Seguir viendo productos</button>
     <h2>Su carrito</h2>
     <p>Total $ {{ $store.getters.total }}</p>
+    <button @click="realizarPedido">Realizar Pedido</button>
     <div class="container-fluid">
       <div class="row justify-content-evenly">
         <article
@@ -34,6 +36,12 @@ export default {
     },
     disminuirProducto(id) {
       this.$store.dispatch('disminuirProducto', id)
+    },
+    realizarPedido() {
+      this.$store.dispatch('realizarPedido')
+    },
+    continuarViendo() {
+      this.$router.push({path: '/user'})
     }
   },
   computed: {

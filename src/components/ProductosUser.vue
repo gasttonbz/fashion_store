@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid">
+    <button @click="verCarrito">ver carrito</button>
     <div class="row justify-content-evenly">
       <article v-for="(product, index) in $store.getters.products" :key="index" class="card col-2 m-2">
         <h3>{{ product.title }}</h3>
@@ -24,7 +25,13 @@ export default {
     agregar(id) {
       this.$store.dispatch('agregarAlCarrito', id);
     },
-    verDetalles(id) {console.log('comprado producto ' + id)} //pendiente
+    verDetalles(id) {
+      this.$store.dispatch('verDetalles', id);
+      this.$router.push({path: '/productDetail'})
+    } ,
+    verCarrito() {
+      this.$router.push({path: '/carrito'})
+    }
   }
 };
 </script>
