@@ -1,38 +1,39 @@
 <template>
-  <div>
+  <div class="mt-5">
     <h2>Registrarse</h2>
-    <form @submit.prevent="register">
-      <label for="firstName">Nombre</label>
-      <input type="text" name="firstName" v-model="firstName" />
-      <div v-if="errorFirstName" class="alert-warning mi-alert">
+    <form @submit.prevent="register" class="card w-25 mx-auto d-flex flex-column">
+      <label for="firstName" class="w-50 mx-auto mt-3">Nombre</label>
+      <input type="text" name="firstName" v-model="firstName" class="w-50 mx-auto" />
+      <div v-if="errorFirstName" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorFistName }}
       </div>
 
-      <label for="lastName">Apellido</label>
-      <input type="text" name="lastName" v-model="lastName" />
-      <div v-if="errorLastName" class="alert-warning mi-alert">
+      <label for="lastName" class="w-50 mx-auto mt-3">Apellido</label>
+      <input type="text" name="lastName" v-model="lastName" class="w-50 mx-auto" />
+      <div v-if="errorLastName" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorLastName }}
       </div>
 
-      <label for="username">Username</label>
-      <input type="text" name="username" v-model="username" />
-      <div v-if="errorUsername" class="alert-warning mi-alert">
+      <label for="username" class="w-50 mx-auto mt-3">Username</label>
+      <input type="text" name="username" v-model="username" class="w-50 mx-auto" />
+      <div v-if="errorUsername" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorUsername }}
       </div>
 
-      <label for="email">Email</label>
-      <input type="text" name="email" v-model="email" />
-      <div v-if="errorEmail" class="alert-warning mi-alert">
+      <label for="email" class="w-50 mx-auto mt-3">Email</label>
+      <input type="text" name="email" v-model="email" class="w-50 mx-auto" />
+      <div v-if="errorEmail" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorEmail }}
       </div>
 
-      <label for="password">Contraseña</label>
-      <input type="password" name="password" v-model="password" />
-      <div v-if="errorPassword" class="alert-warning mi-alert">
+      <label for="password" class="w-50 mx-auto mt-3">Contraseña</label>
+      <input type="password" name="password" v-model="password" class="w-50 mx-auto" />
+      <div v-if="errorPassword" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorPassword }}
       </div>
 
-      <input
+      <div class="w-50 mx-auto mt-3">
+        <input
         type="checkbox"
         name="admin"
         id="admin"
@@ -40,10 +41,14 @@
         v-model="adminMode"
       />
       <label for="admin">Administrador</label>
+      </div>
 
-      <input type="submit" value="Registrarse" />
+      <div class="w-50 mx-auto">
+        <input type="submit" value="Registrarse" class="btn btn-secondary w-75 mx-auto mt-3"/>
+        <button @click="toLogin" class="btn btn-danger w-75 mx-auto my-3">Iniciar Sesión</button>
+      </div>
+      
     </form>
-    <button @click="toLogin">Ir a login</button>
   </div>
 </template>
 

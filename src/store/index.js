@@ -122,7 +122,7 @@ export default new Vuex.Store({
       context.commit('vaciarCarrito')
     },
     realizarPedido() {
-      if (this.getters.carrito.length !== 0) {
+      if (this.getters.carrito.length !== 0 && this.getters.total !== 0) {
         let data = [];
         for (let i = 0; i < this.getters.carrito.length; i++) {
           let cartProduct = {};

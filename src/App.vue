@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <header class="d-flex justify-content-between align-items-center">
-      <router-link to="/">Fashion Store</router-link>
-      <nav>
+    <header>
+      <div class="w-25 d-flex align-items-center"><img src="@/assets/logo.png" id="logo" alt="" class="w-75"></div>
+      <nav class="w-25">
         <router-link to="/carrito">Carrito</router-link>
         <router-link to="/admin">Pagina de administrador</router-link>
         <router-link to="/user">Productos</router-link>
@@ -16,28 +16,18 @@
 
 <style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
-
 header {
   width: 100%;
   height: 10vh;
   padding: 10px;
   background-color: black;
   color: white;
-}
-header a {
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: white;
-}
-header nav a {
-  color: white;
-  text-decoration: none;
-  margin: 4px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
 }
 </style>

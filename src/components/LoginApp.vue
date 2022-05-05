@@ -1,31 +1,51 @@
 <template>
-  <div>
-    <h2>Inicie sesión</h2>
-    <form @submit.prevent="signIn">
-      <label for="username">Nombre de usuario</label>
-      <input type="text" name="username" v-model="username" />
-      <div v-if="errorUsername" class="alert-warning mi-alert">
+  <div class="mt-5">
+    <h2>Iniciar sesión</h2>
+    <form @submit.prevent="signIn" class="card w-25 mx-auto d-flex flex-column">
+      <label for="username" class="w-50 mx-auto mt-3">Nombre de usuario</label>
+      <input
+        type="text"
+        name="username"
+        v-model="username"
+        class="w-50 mx-auto"
+      />
+      <div v-if="errorUsername" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorUsername }}
       </div>
 
-      <label for="password">Contraseña</label>
-      <input type="password" name="password" v-model="password" />
-      <div v-if="errorPassword" class="alert-warning mi-alert">
+      <label for="password" class="w-50 mx-auto mt-3">Contraseña</label>
+      <input
+        type="password"
+        name="password"
+        v-model="password"
+        class="w-50 mx-auto"
+      />
+      <div v-if="errorPassword" class="alert-warning mi-alert w-75 mx-auto">
         {{ msgErrorPassword }}
       </div>
 
-      <input
-        type="checkbox"
-        name="admin"
-        id="admin"
-        value="true"
-        v-model="adminMode"
-      />
-      <label for="admin">Administrador</label>
+      <div class="w-50 mx-auto mt-3">
+        <input
+          type="checkbox"
+          name="admin"
+          id="admin"
+          value="true"
+          v-model="adminMode"
+        />
+        <label for="admin">Administrador</label>
+      </div>
 
-      <input type="submit" value="Ingresar" />
+      <div class="w-50 mx-auto">
+        <input
+          type="submit"
+          value="Ingresar"
+          class="btn btn-secondary w-75 mx-auto mt-3"
+        />
+        <button @click="toRegister" class="btn btn-danger w-75 mx-auto my-3">
+          Registrarse
+        </button>
+      </div>
     </form>
-    <button @click="toRegister">Ir a Registro</button>
   </div>
 </template>
 

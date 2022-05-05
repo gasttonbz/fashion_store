@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="mt-5">
       <h2>¡Bienvenido a Fashion Store!</h2>
-      <p>Para empezar a comprar Inicie Sesion o Registrese</p>
-      <button @click="toLogin">Iniciar Sesion</button>
-      <button @click="toRegister">Registrarse</button>
+      <p>Para empezar a comprar Inicie Sesión o Registrese</p>
+      <button @click="toLogin" class="btn btn-secondary mx-2">Iniciar Sesion</button>
+      <button @click="toRegister" class="btn btn-secondary mx-2">Registrarse</button>
   </div>
 </template>
 

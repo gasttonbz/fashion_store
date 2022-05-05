@@ -1,6 +1,5 @@
 <template>
   <div>
-      <h1>Bienvenido</h1>
       <login-app v-if="$store.getters.showLogin"></login-app>
       <register-app v-if="$store.getters.showRegister"></register-app>
   </div>
