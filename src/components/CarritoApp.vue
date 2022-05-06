@@ -27,6 +27,7 @@
 
     <button @click="continuarViendo" class="btn btn-secondary mx-2">Seguir viendo productos</button>    
     <button @click="realizarPedido" class="btn btn-primary mx-2">Realizar Pedido</button>
+    <button @click="vaciarCarrito" class="btn btn-danger mx-2">Vaciar Carrito</button>
   </div>
 </template>
 
@@ -49,6 +50,9 @@ export default {
     continuarViendo() {
       this.$router.push({ path: "/user" });
     },
+    vaciarCarrito() {
+      this.$store.dispatch('vaciarCarrito')
+    }
   },
   computed: {
     carrito() {

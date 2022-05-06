@@ -13,6 +13,7 @@ export default new Vuex.Store({
     products: [],
     carrito: [],
     detallesProducto: {},
+    pedidos: []
   },
   getters: {
     showLogin(state) {
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     detallesProducto(state) {
       return state.detallesProducto;
     },
+    pedidos(state) {
+      return state.pedidos
+    }
   },
   mutations: {
     loadProducts(state, { data }) {
@@ -94,6 +98,9 @@ export default new Vuex.Store({
     },
     vaciarCarrito(state) {
       state.carrito = []
+    },
+    setPedidos(state, {response}) {
+      state.pedidos = response.data
     }
   },
   actions: {
@@ -146,6 +153,11 @@ export default new Vuex.Store({
     verDetalles(context, id) {
       context.commit("verDetalles", { id });
     },
+    downloadPedidos(context) {
+      axios.get("https://626f7d59c508beec48844b22.mockapi.io/pedidos")
+        .then(response => {context.commit('setPedidos', {response})})
+        .catch(error => console.log(error))
+    }
   },
   modules: {},
 });
