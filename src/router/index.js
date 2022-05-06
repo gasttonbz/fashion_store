@@ -8,6 +8,7 @@ import CarritoView from '../views/CarritoView.vue'
 import HomeView from '@/views/HomeView.vue'
 import DetailView from '@/views/DetailView.vue'
 import PedidosView from '@/views/PedidosView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/pedidos',
     name: 'pedidos',
     component: PedidosView
+  },
+  {
+    path: '/perfil',
+    name: 'perfil',
+    component: ProfileView
   }
 ]
 

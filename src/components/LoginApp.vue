@@ -70,6 +70,11 @@ export default {
     };
   },
   methods: {
+    guardarDatos(username, password, mode) {
+      sessionStorage.setItem('username', username);
+      sessionStorage.setItem('password', password);
+      sessionStorage.setItem('mode', mode);
+    },
     async verifyUser() {
       let respuesta = await axios.get(
         "https://626f7d59c508beec48844b22.mockapi.io/usuarios"
@@ -83,7 +88,9 @@ export default {
           (user) => user.password == this.password
         );
         if (correctPassword) {
+          this.guardarDatos(this.username, this.password, 'user');
           alert("Inicio de sesión exitoso");
+          this.$store.dispatch('userMode');
           this.$router.push({ path: "/user" });
         } else {
           this.errorUsername = true;
@@ -107,7 +114,9 @@ export default {
           (admin) => admin.password == this.password
         );
         if (correctPassword) {
+          this.guardarDatos(this.username, this.password, 'admin');
           alert("Inicio de sesión exitoso");
+          this.$store.dispatch('adminMode');
           this.$router.push({ path: "/admin" });
         } else {
           this.errorUsername = true;

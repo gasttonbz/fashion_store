@@ -1,18 +1,45 @@
 <template>
   <div id="app">
     <header>
-      <div class="w-25 d-flex align-items-center"><img src="@/assets/logo.png" id="logo" alt="" class="w-75"></div>
-      <nav class="w-25">
-        <router-link to="/carrito">Carrito</router-link>
-        <router-link to="/admin">Pagina de administrador</router-link>
-        <router-link to="/user">Productos</router-link>
-        <router-link to="/getIn">get in</router-link>
-      </nav>
+      <div v-if="this.$store.getters.userMode" @click="verPerfil" class="w-25 d-flex justify-content-start"><img src="@/assets/user.png" alt=""></div>
+      <div v-if="this.$store.getters.adminMode" @click="verPerfil" class="w-25 d-flex justify-content-start"><img src="@/assets/admin.png" alt=""></div>
+      <div class="w-25 d-flex align-items-center mx-auto"><img src="@/assets/logo.png" id="logo" alt="" class="w-100 mx-auto"></div>
+      <div v-if="this.$store.getters.userMode" @click="verCarrito" class="w-25 d-flex justify-content-end"><img src="@/assets/carrito.png" alt="" id="carritoLogo"></div>
+      <div v-if="this.$store.getters.adminMode" @click="verPedidos" class="w-25 d-flex justify-content-end"><img src="@/assets/pedidos.png" alt="" id="carritoLogo"></div>
     </header>
 
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  beforeMount() {
+    let usuario = sessionStorage.getItem('username');
+    let contrasenia = sessionStorage.getItem('password');
+    let mode = sessionStorage.getItem('mode');
+
+    if(usuario != '' && contrasenia != '') {
+      if(mode == 'user') {
+        this.$store.dispatch('userMode')
+      } else {
+        this.$store.dispatch('adminMode')
+      }
+    }
+  },
+  methods: {
+    verCarrito() {
+      this.$router.push({path: '/carrito'})
+    },
+    verPedidos() {
+      this.$router.push({path: '/pedidos'})
+    },
+    verPerfil() {
+      this.$router.push({path: '/perfil'})
+    }
+  }
+}
+</script>
 
 <style scoped>
 #app {
@@ -29,5 +56,9 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-content: center;
+}
+
+#carritoLogo {
+  width: 50px;
 }
 </style>

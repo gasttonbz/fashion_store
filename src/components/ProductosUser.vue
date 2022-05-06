@@ -1,6 +1,5 @@
 <template>
   <div class="container mt-3">
-    <button @click="verCarrito">ver carrito</button>
     <div class="row justify-content-evenly">
       <article v-for="(product, index) in $store.getters.products" :key="index" class="card">
         <h4>{{ product.title }}</h4>
@@ -28,9 +27,6 @@ export default {
     verDetalles(id) {
       this.$store.dispatch('verDetalles', id);
       this.$router.push({path: '/productDetail'})
-    } ,
-    verCarrito() {
-      this.$router.push({path: '/carrito'})
     }
   }
 };

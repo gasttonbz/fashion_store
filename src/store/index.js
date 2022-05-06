@@ -10,6 +10,9 @@ export default new Vuex.Store({
     showLogin: true,
     showRegister: false,
 
+    adminMode: false,
+    userMode: false,
+
     products: [],
     carrito: [],
     detallesProducto: {},
@@ -41,6 +44,12 @@ export default new Vuex.Store({
     },
     pedidos(state) {
       return state.pedidos
+    },
+    adminMode(state) {
+      return state.adminMode
+    },
+    userMode(state) {
+      return state.userMode
     }
   },
   mutations: {
@@ -101,6 +110,18 @@ export default new Vuex.Store({
     },
     setPedidos(state, {response}) {
       state.pedidos = response.data
+    },
+    adminMode(state) {
+      state.adminMode = true;
+      state.userMode = false;
+    },
+    userMode(state) {
+      state.adminMode = false;
+      state.userMode = true;
+    },
+    cerrarSesion(state) {
+      state.adminMode = false;
+      state.userMode = false;
     }
   },
   actions: {
@@ -157,6 +178,15 @@ export default new Vuex.Store({
       axios.get("https://626f7d59c508beec48844b22.mockapi.io/pedidos")
         .then(response => {context.commit('setPedidos', {response})})
         .catch(error => console.log(error))
+    },
+    adminMode(context) {
+      context.commit('adminMode')
+    },
+    userMode(context) {
+      context.commit('userMode')
+    },
+    cerrarSesion(context) {
+      context.commit('cerrarSesion')
     }
   },
   modules: {},

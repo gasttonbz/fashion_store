@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <button @click="verPedidos">ver pedidos</button>
       <div class="row justify-content-evenly">
         <article
           v-for="(product, index) in $store.getters.products"
@@ -33,9 +32,6 @@ export default {
       axios.delete(urlToDelete)
       .then((response) => console.log(response))
       .catch((error) => console.log('problema ' + error))
-    },
-    verPedidos() {
-      this.$router.push({path: '/pedidos'})
     }
   }
 };
