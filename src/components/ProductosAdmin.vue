@@ -10,7 +10,6 @@
           <img :src="product.image" alt="" />
           <p>$ {{ product.price }}</p>
           <button @click="eliminar(product.id)" class="btn btn-secondary w-75 mt-2 mx-auto">Eliminar</button>
-          <button class="btn btn-secondary w-75 mt-2 mx-auto">Modificar</button>
         </article>
       </div>
     
@@ -33,7 +32,7 @@ export default {
     eliminar(id) {
       let urlToDelete = `https://fakestoreapi.com/products/${id}`
       axios.delete(urlToDelete)
-      .then((response) => console.log(response))
+      .then(alert('Producto eliminado. No se veran cambios puesto que la API utilizada no lo permite'))
       .catch((error) => console.log('problema ' + error))
     }
   }
