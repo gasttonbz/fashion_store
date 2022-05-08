@@ -119,6 +119,10 @@ export default new Vuex.Store({
       state.adminMode = false;
       state.userMode = true;
     },
+    guestMode(state) {
+      state.userMode = false;
+      state.adminMode = false;
+    },
     cerrarSesion(state) {
       state.adminMode = false;
       state.userMode = false;
@@ -166,7 +170,7 @@ export default new Vuex.Store({
           })
           .then(alert("pedido exitoso, seras redirigido a la seccion productos"));
           this.dispatch('vaciarCarrito')
-          router.push({path: '/user'})
+          router.push({path: '/productos'})
       } else {
         alert("carrito vacio");
       }
@@ -184,6 +188,9 @@ export default new Vuex.Store({
     },
     userMode(context) {
       context.commit('userMode')
+    },
+    guestMode(context) {
+      context.commit('guestMode')
     },
     cerrarSesion(context) {
       context.commit('cerrarSesion')

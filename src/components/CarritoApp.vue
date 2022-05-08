@@ -18,22 +18,49 @@
           <td>{{ producto.title }}</td>
           <td>{{ producto.price }}</td>
           <td>{{ producto.cantidad }}</td>
-          <td><button @click="aumentarProducto(producto.id)" class="btn btn-secondary me-2">+</button><button @click="disminuirProducto(producto.id)" class="btn btn-secondary">-</button></td>
-          <td><button @click="quitarProducto(producto.id)" class="btn btn-danger">Quitar</button></td>
-          <td>{{ producto.cantidad * producto.price}}</td>
+          <td>
+            <button
+              @click="aumentarProducto(producto.id)"
+              class="btn btn-secondary me-2"
+            >
+              +</button
+            ><button
+              @click="disminuirProducto(producto.id)"
+              class="btn btn-secondary"
+            >
+              -
+            </button>
+          </td>
+          <td>
+            <button @click="quitarProducto(producto.id)" class="btn btn-danger">
+              Quitar
+            </button>
+          </td>
+          <td>{{ producto.cantidad * producto.price }}</td>
         </tr>
       </tbody>
     </table>
 
-    <button @click="continuarViendo" class="btn btn-secondary mx-2">Seguir viendo productos</button>    
-    <button @click="realizarPedido" class="btn btn-primary mx-2">Realizar Pedido</button>
-    <button @click="vaciarCarrito" class="btn btn-danger mx-2">Vaciar Carrito</button>
+    <button @click="continuarViendo" class="btn btn-secondary mx-2">
+      Seguir viendo productos
+    </button>
+    <button @click="realizarPedido" class="btn btn-primary mx-2">
+      Realizar Pedido
+    </button>
+    <button @click="vaciarCarrito" class="btn btn-danger mx-2">
+      Vaciar Carrito
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: "CarritoApp",
+  beforeMount() {
+    if (!this.$store.getters.userMode && !this.$store.getters.adminMode) {
+      this.$router.push({ path: "/" });
+    }
+  },
   methods: {
     quitarProducto(id) {
       this.$store.dispatch("quitarDelCarrito", id);
@@ -48,16 +75,16 @@ export default {
       this.$store.dispatch("realizarPedido");
     },
     continuarViendo() {
-      this.$router.push({ path: "/user" });
+      this.$router.push({ path: "/productos" });
     },
     vaciarCarrito() {
-      this.$store.dispatch('vaciarCarrito')
-    }
+      this.$store.dispatch("vaciarCarrito");
+    },
   },
   computed: {
     carrito() {
       return this.$store.getters.carrito;
-    }
+    },
   },
 };
 </script>

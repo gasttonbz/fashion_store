@@ -23,7 +23,11 @@ export default {
       if(mode == 'user') {
         this.$store.dispatch('userMode')
       } else {
-        this.$store.dispatch('adminMode')
+        if(mode == 'admin') {
+          this.$store.dispatch('adminMode')
+        } else {
+          this.$store.dispatch('guestMode')
+        }
       }
     }
   },

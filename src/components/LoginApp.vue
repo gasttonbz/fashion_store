@@ -91,7 +91,7 @@ export default {
           this.guardarDatos(this.username, this.password, 'user');
           alert("Inicio de sesión exitoso");
           this.$store.dispatch('userMode');
-          this.$router.push({ path: "/user" });
+          this.$router.push({ path: "/productos" });
         } else {
           this.errorUsername = true;
           this.msgErrorUsername = "La contraseña es incorrecta";

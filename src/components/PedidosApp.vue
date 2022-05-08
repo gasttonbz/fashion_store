@@ -22,6 +22,9 @@ export default {
       ItemPedidos
   },
   beforeMount() {
+    if (!this.$store.getters.userMode && !this.$store.getters.adminMode) {
+      this.$router.push({ path: "/" });
+    }
     this.$store.dispatch("downloadPedidos");
   },
   computed: {

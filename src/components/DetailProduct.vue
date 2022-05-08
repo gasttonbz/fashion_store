@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     volver() {
-      this.$router.push({ path: "/user" });
+      this.$router.push({ path: "/productos" });
     },
     agregar(id) {
         this.$store.dispatch('agregarAlCarrito', id);

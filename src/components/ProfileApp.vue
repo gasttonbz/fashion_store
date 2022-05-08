@@ -14,6 +14,11 @@
 <script>
 export default {
     name: 'ProfileApp',
+    beforeMount() {
+        if(!this.$store.getters.userMode && !this.$store.getters.adminMode) {
+            this.$router.push({path: '/'})
+        }
+    },
     computed: {
         usuario() {
             return sessionStorage.getItem('username');
@@ -32,7 +37,7 @@ export default {
         },
         volver(mode) {
             if(mode == 'user') {
-                this.$router.push({path: '/user'})
+                this.$router.push({path: '/productos'})
             } else {
                 this.$router.push({path: '/admin'})
             }

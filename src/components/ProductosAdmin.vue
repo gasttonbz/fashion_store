@@ -22,6 +22,9 @@ const axios = require("axios");
 export default {
   name: "ProductosAdmin",
   beforeMount() {
+    if (!this.$store.getters.userMode && !this.$store.getters.adminMode) {
+      this.$router.push({ path: "/" });
+    }
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((json) => (this.$store.dispatch('loadProducts', json)));

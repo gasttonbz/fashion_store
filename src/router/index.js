@@ -24,8 +24,8 @@ const routes = [
     component: AdminView
   },
   {
-    path: '/user',
-    name: 'user',
+    path: '/productos',
+    name: 'productos',
     component: UserView
   },
   {
