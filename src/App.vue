@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <header>
-      <div v-if="this.$store.getters.userMode" @click="verPerfil" class="w-25 d-flex justify-content-start"><img src="@/assets/user.png" alt=""></div>
-      <div v-if="this.$store.getters.adminMode" @click="verPerfil" class="w-25 d-flex justify-content-start"><img src="@/assets/admin.png" alt=""></div>
+      <div v-if="this.$store.getters.userMode" @click="verPerfil" class="pointer w-25 d-flex justify-content-start"><img role="button" src="@/assets/user.png" alt=""></div>
+      <div v-if="this.$store.getters.adminMode" @click="verPerfil" class="w-25 d-flex justify-content-start"><img role="button" src="@/assets/admin.png" alt=""></div>
       <div class="w-25 d-flex align-items-center mx-auto"><img src="@/assets/logo.png" id="logo" alt="" class="w-100 mx-auto"></div>
-      <div v-if="this.$store.getters.userMode" @click="verCarrito" class="w-25 d-flex justify-content-end"><img src="@/assets/carrito.png" alt="" id="carritoLogo"></div>
-      <div v-if="this.$store.getters.adminMode" @click="verPedidos" class="w-25 d-flex justify-content-end"><img src="@/assets/pedidos.png" alt="" id="carritoLogo"></div>
+      <div v-if="this.$store.getters.userMode" @click="verCarrito" class="w-25 d-flex justify-content-end align-items-center"><p v-if="cantidadCarrito > 0" id="infoCarrito">{{ cantidadCarrito }}</p><img role="button" src="@/assets/carrito.png" alt="" id="carritoLogo"></div>
+      <div v-if="this.$store.getters.adminMode" @click="verPedidos" class="w-25 d-flex justify-content-end"><img role="button" src="@/assets/pedidos.png" alt="" id="carritoLogo"></div>
     </header>
 
     <router-view />
@@ -25,6 +25,11 @@ export default {
       } else {
         this.$store.dispatch('adminMode')
       }
+    }
+  },
+  computed: {
+    cantidadCarrito() {
+      return this.$store.getters.carrito.length
     }
   },
   methods: {
@@ -60,5 +65,10 @@ header {
 
 #carritoLogo {
   width: 50px;
+}
+#infoCarrito {
+  color: white;
+  background-color: red;
+  border-radius: 25%;
 }
 </style>
